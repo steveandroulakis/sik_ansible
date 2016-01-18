@@ -1,0 +1,8 @@
+---
+
+- include: STAR.yml tags=star version=2.5.0c
+- include: htslib.yml tags=htslib version=1.2
+- include: samtools.yml tags=samtools version=1.2 htslib_version=1.2
+- include: rna-seqc.yml tags=rna-seqc version=1.1.8
+- include: rnasik-pipe.yml tags=rnasik-pipe version=1.3
+- include: fastqc.yml tags=fastqc version=0.11.4
