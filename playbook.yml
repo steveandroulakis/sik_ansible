@@ -7,6 +7,8 @@
   roles:
           - bds
           - java
+          - lmod
+          - make_sw_guy
   sudo: yes
 
 - name: set up bioinformatiky tools

@@ -1,7 +1,7 @@
 ---
 
 # Setting up a host
-remote_host: ansible-launcher
+#remote_host: ansible-launcher
 
 # guy in charge
 sw_installer: sw-installer

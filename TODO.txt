@@ -1,0 +1,2 @@
+need to install featureCounts
+finish off bds.yml
