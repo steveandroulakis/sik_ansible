@@ -1,0 +1,8 @@
+# List of servers, ansible refers to them as systems
+
+example_server          ansible_ssh_host=146.118.100.12
+
+# List of different groups, the same system can be added to multiple groups
+
+[bioinformatics]
+example_server
