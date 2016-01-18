@@ -1,18 +1,19 @@
 ---
 # This playbook deploys RNAsik-pipe with all relevant tools
 
-- name: Install BDS and Java
-  hosts: all
+- name: Install RNAsik-pipe with all relevant tools
+  hosts: sik
   remote_user: ubuntu
   roles:
-          - bds
-          - java
-          - lmod
+          - common
           - make_sw_guy
+          - lmod 
+          - java
   sudo: yes
 
-- name: set up bioinformatiky tools
-  hosts: bioinformatics
-  remote_user: "{{ sw_installer }}"
-  roles:
-          - bio_tools
+#- name: set up bioinformatiky tools
+#  hosts: sik
+#  remote_user: "{{ sw_installer }}"
+#  roles:
+#          - bio_tools
+#          - bds

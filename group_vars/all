@@ -4,7 +4,7 @@
 #remote_host: ansible-launcher
 
 # guy in charge
-sw_installer: sw-installer
+sw_installer: sik_dude
 
 # software directory tree
 source_dir: /software/source
@@ -12,5 +12,6 @@ soft_dir: /software/apps
 modules_dir: /software/modules
 ref_dir: /references
 
+lmod_version: 6.0.1
 # setting up public key 
 pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKvlI3CjTFEehCMVwUrHmutIjMQnGZYUIlGm7BU/xUKJTCijIGnVCh22yyplgPx/iG4Wg5zEkbCIGTI+yaA73mTR9jqo8PSy213LfRiiAmYGtffcY6TFrfaiqrPhKXlouMB3QY0c676Ds1A4Lpml2C2raUywqeHBVJMNj25CIvn/T9OQV64N4v+PYkhOPIHzP40X9iav73eWHqSrsXVltfh4eh/CI9M44VWc8Om653gfvrpqdWietjbpxPPT+VLhT1JdNJXV0tS6RMhBedJAMkFIKgYBO3zlM8J6Tn+QO8q3hLPre/rikHVgSGLwPTb9JZnlPLjHGgUamAxxrmGLv5 kirill@biostation"

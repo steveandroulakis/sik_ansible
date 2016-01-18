@@ -1,7 +1,7 @@
 ---
 
 - name: Create required directories
-  file: dest={{item}} state=directory mode=0755 owner=sw-installer
+  file: dest={{item}} state=directory mode=0755 owner={{ sw_installer }}
   with_items:
   - "{{ source_dir }}"
   - "{{ soft_dir }}"
@@ -27,7 +27,6 @@
   shell: cd {{ source_dir }}/Lmod-{{ lmod_version }}; ./configure --prefix={{ soft_dir }} --with-mpathSearch=YES --with-caseIndependentSorting=YES && make install LUA_INCLUDE=/usr/include/lua5.2
   args:
     creates: "{{ soft_dir }}/lmod/{{ lmod_version }}"
-
 
 - name: Copy lmod bash init file to /etc/profile.d/lmod.sh
   template:
