@@ -16,3 +16,5 @@
     - lua-filesystem
     - lua-posix
     - tcl
+    # htslib dependencies
+    - zlib1g-dev
