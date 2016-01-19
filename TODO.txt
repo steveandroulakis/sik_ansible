@@ -1,2 +1,3 @@
 need to install featureCounts
-finish off bds.yml
+remove all tags from main.yml in bio_tools, they should be inside files
+figure out how to do verioning for bds.yml file, there should be a way to put it inside the file
