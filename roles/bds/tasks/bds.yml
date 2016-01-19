@@ -9,9 +9,6 @@
 - name: Installing BigDataScript
   shell: cd {{ source_dir }}/BigDataScript-{{version}}/; ./scripts/install.sh
 
-- file: dest="{{ soft_dir }}/BigDataScript-{{version}}" state=directory mode=0755
-
-- name: Moving .bds file into global environment
-  shell: mv $HOME/.bds "{{ soft_dir }}/BigDataScript-{{ version }}"
-  args:
-    creates: "{{ soft_dir }}/BigDataScript-{{ version }}/.bds/bds"
+- name: Export to PATH
+  environment:
+          PATH: "{{ local_home }}/.bds":{{ ansible_env.PATH }}
