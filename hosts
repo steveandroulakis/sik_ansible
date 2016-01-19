@@ -1,6 +1,7 @@
 # List of servers, ansible refers to them as systems
 
-example_server          ansible_ssh_host=146.118.100.12
+example_server          ansible_host=146.118.100.12
+localhost               ansible_connection=local
 
 # List of different groups, the same system can be added to multiple groups
 
