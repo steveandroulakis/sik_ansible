@@ -10,6 +10,7 @@
     - git
     - gcc
     - make
+    - unzip
     # Lua language install for lmod
     - lua5.2 
     - liblua5.2-dev
@@ -18,3 +19,7 @@
     - tcl
     # htslib dependencies
     - zlib1g-dev
+    - libncurses-dev
+    # BigDataScript dependencies
+    - golang-go
+    - ant

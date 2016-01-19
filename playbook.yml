@@ -5,10 +5,10 @@
   hosts: sik
   remote_user: ubuntu
   roles:
-           - common
-           - make_sw_guy
-           - lmod 
-           - java
+            - common
+            - make_sw_guy
+            - lmod 
+            - java
   become: true
 
 - name: set up bioinformatiky tools
@@ -16,4 +16,4 @@
   remote_user: "{{ sw_installer }}"
   roles:
           - bio_tools
-            #          - bds
+          - bds
