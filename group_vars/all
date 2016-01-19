@@ -11,9 +11,7 @@ main_guy: ubuntu
 #---------------------------------
 # Different directories variables
 #---------------------------------
-vars:
-  local_home: "{{ lookup('env','HOME') }}"
 
+local_home: "{{ lookup('env','HOME') }}"
 source_dir: "{{ local_home }}/software/source"
 soft_dir: "{{ local_home }}/software/apps"
-
