@@ -10,13 +10,6 @@
   args:
     creates: "{{ soft_dir }}/STAR-{{version}}/bin/STAR"
 
-- file: dest="{{modules_dir}}/bio/STAR" state=directory mode=0755
-
-- name: STAR module definition
-  template: 
-    src: sw-module.lua.j2 
-    dest: "{{ modules_dir }}/bio/STAR/{{version}}.lua"
-    owner: "{{ sw_installer }}" 
-    mode: 0644
-  with_items:
-    - { help_text: 'This module loads the STAR aligner', dir: 'STAR-{{version}}' }
+- name: Append to PATH
+  environment:
+          PATH: "{{ soft_dir }}/STAR-{{ version }}/bin":{{ ansible_env.PATH }}

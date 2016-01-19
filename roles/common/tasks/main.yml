@@ -11,15 +11,21 @@
     - gcc
     - make
     - unzip
-    # Lua language install for lmod
-    - lua5.2 
-    - liblua5.2-dev
-    - lua-filesystem
-    - lua-posix
-    - tcl
+      # # Lua language install for lmod
+      # - lua5.2 
+      # - liblua5.2-dev
+      # - lua-filesystem
+      # - lua-posix
+      # - tcl
     # htslib dependencies
     - zlib1g-dev
     - libncurses-dev
     # BigDataScript dependencies
     - golang-go
     - ant
+
+- name: Create required directories
+  file: dest={{item}} state=directory mode=0755 owner={{ main_guy }}
+  with_items:
+  - "{{ source_dir }}"
+  - "{{ soft_dir }}"

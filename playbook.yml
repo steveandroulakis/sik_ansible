@@ -2,19 +2,17 @@
 # This playbook deploys RNAsik-pipe with all relevant tools
 
 - name: Installing common packages for RNAsik-pipe and associate tools
-  hosts: remote
+  hosts: home
   remote_user: "{{ main_guy }}"
   roles:
             - common
-            - make_sw_guy
-            - lmod 
             - java
 
   become: true
 
 - name: Installing BigDataScript, RNAsik-pipe and bioinformatc's tools
-  hosts: remote
-  remote_user: "{{ sw_installer }}"
+  hosts: home
+  remote_user: "{{ main_guy }}"
   roles:
           - bds
           - bio_tools

@@ -1,8 +1,8 @@
 # List of servers, ansible refers to them as systems
 
-your_server          ansible_host=146.118.100.12
+localhost            ansible_connection=local
 
 # List of different groups, the same system can be added to multiple groups
 
-[remote]
-your_server
+[home]
+localhost
