@@ -17,8 +17,13 @@
     - { jar: '{{ soft_dir }}/RNA-SeQC_v{{version}}/RNA-SeQC_v{{version}}.jar' }
 
 - name: Set RNA-SeQC globaly
+  become: "{{ bool_var }}"
+
   file:
     path: /usr/local/bin/rna-seqc
     src: "{{ soft_dir }}/RNA-SeQC_v{{ version }}/rna-seqc"
     state: link
     owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
+
+  tags: rna-seqc

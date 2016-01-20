@@ -8,8 +8,13 @@
        update=no
 
 - name: Set RNAsik-pipe globaly
+  become: "{{ bool_var }}"
+
   file:
     path: /usr/local/bin/RNAsik-pipe
     src: "{{ soft_dir }}/-RNAsik-pipe-{{ version }}/src/RNAsik-pipe"
     state: link
     owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
+
+  tags: rnasik-pipe

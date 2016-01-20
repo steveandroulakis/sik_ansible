@@ -15,4 +15,4 @@
   remote_user: "{{ main_guy }}"
   roles:
           - bds
-          #- bio_tools
+          - bio_tools

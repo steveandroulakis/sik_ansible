@@ -18,8 +18,13 @@
     creates: "{{ soft_dir }}/samtools-{{version}}/bin/samtools"
 
 - name: Set samtools globaly
+  become: "{{ bool_var }}"
+
   file:
     path: /usr/local/bin/samtools
     src: "{{ soft_dir }}/samtools-{{ version }}/bin/samtools"
     state: link
     owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
+
+  tags: samtools

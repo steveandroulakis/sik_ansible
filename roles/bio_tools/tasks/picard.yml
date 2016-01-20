@@ -24,9 +24,13 @@
     - { jar: '{{ soft_dir }}/picard-tools-{{version}}/picard.jar' }
 
 - name: Set picard globaly
+  become: "{{ bool_var }}"
+
   file:
     path: /usr/local/bin/picard
     src: "{{ soft_dir }}/picard-{{ version }}/bin/picard"
     state: link
     owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
 
+  tags: picard
