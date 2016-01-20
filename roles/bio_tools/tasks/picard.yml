@@ -28,7 +28,7 @@
 
   file:
     path: /usr/local/bin/picard
-    src: "{{ soft_dir }}/picard-{{ version }}/bin/picard"
+    src: "{{ soft_dir }}/picard-tools-{{ version }}/bin/picard"
     state: link
     owner: "{{ main_guy }}"
   when: "{{ bool_var }}"
