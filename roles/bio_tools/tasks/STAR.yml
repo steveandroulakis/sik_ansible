@@ -10,6 +10,9 @@
   args:
     creates: "{{ soft_dir }}/STAR-{{version}}/bin/STAR"
 
-- name: Append to PATH
-  environment:
-          PATH: "{{ soft_dir }}/STAR-{{ version }}/bin":{{ ansible_env.PATH }}
+- name: Set STAR globaly
+  file:
+    path: /usr/local/bin/STAR
+    src: "{{ soft_dir }}/STAR-{{ version }}/bin/STAR"
+    state: link
+    owner: "{{ main_guy }}"

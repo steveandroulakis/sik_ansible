@@ -25,7 +25,7 @@
     - ant
 
 - name: Create required directories
-  file: dest={{item}} state=directory mode=0755 owner={{ main_guy }}
+  file: dest={{item}} state=directory mode=0755
   with_items:
   - "{{ source_dir }}"
   - "{{ soft_dir }}"

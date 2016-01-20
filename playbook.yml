@@ -5,14 +5,9 @@
   hosts: home
   remote_user: "{{ main_guy }}"
   roles:
-            - common
-            - java
-
-  become: true
-
-- name: Installing BigDataScript, RNAsik-pipe and bioinformatc's tools
-  hosts: home
-  remote_user: "{{ main_guy }}"
-  roles:
+          - common
+          - java
           - bds
           - bio_tools
+
+  become: true

@@ -11,7 +11,14 @@
   template:
     src: java-wrapper.sh.j2
     dest: "{{ soft_dir }}/RNA-SeQC_v{{version}}/rna-seqc"
-    owner: "{{ sw_installer }}" 
+    owner: "{{ main_guy }}"
     mode: 0755
   with_items:
     - { jar: '{{ soft_dir }}/RNA-SeQC_v{{version}}/RNA-SeQC_v{{version}}.jar' }
+
+- name: Set RNA-SeQC globaly
+  file:
+    path: /usr/local/bin/rna-seqc
+    src: "{{ soft_dir }}/RNA-SeQC_v{{ version }}/rna-seqc"
+    state: link
+    owner: "{{ main_guy }}"

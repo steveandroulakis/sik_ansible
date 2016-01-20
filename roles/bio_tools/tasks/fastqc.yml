@@ -15,3 +15,10 @@
   command: mv {{ soft_dir }}/FastQC {{ soft_dir }}/FastQC-{{ version }} creates={{ soft_dir }}/FastQC-{{ version }}
 
 - file: path="{{ soft_dir }}/FastQC-{{ version }}/fastqc" mode="a+x"
+
+#- name: Set STAR globaly
+#  file:
+#    path: /usr/local/bin/STAR
+#    src: "{{ soft_dir }}/STAR-{{ version }}/bin/STAR"
+#    state: link
+#    owner: "{{ main_guy }}"

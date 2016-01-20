@@ -9,6 +9,9 @@
 - name: Installing BigDataScript
   shell: cd {{ source_dir }}/BigDataScript-{{version}}/; ./scripts/install.sh
 
-- name: Export to PATH
-  environment:
-          PATH: "{{ local_home }}/.bds":{{ ansible_env.PATH }}
+- name: Set BDS globaly
+  file:
+    path: /usr/local/bin/bds
+    src: "{{ local_home }}/.bds/bds"
+    state: link
+    owner: "{{ main_guy }}"

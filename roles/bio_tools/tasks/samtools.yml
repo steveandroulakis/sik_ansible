@@ -16,3 +16,10 @@
   shell: cd {{ source_dir }}/samtools-{{version}}; make install prefix="{{ soft_dir }}/samtools-{{version}}" HTSDIR="../htslib-{{htslib_version}}"
   args:
     creates: "{{ soft_dir }}/samtools-{{version}}/bin/samtools"
+
+- name: Set samtools globaly
+  file:
+    path: /usr/local/bin/samtools
+    src: "{{ soft_dir }}/samtools-{{ version }}/bin/samtools"
+    state: link
+    owner: "{{ main_guy }}"

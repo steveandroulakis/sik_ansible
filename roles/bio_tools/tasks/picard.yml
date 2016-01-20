@@ -18,8 +18,15 @@
   template:
     src: java-wrapper.sh.j2
     dest: "{{ soft_dir }}/picard-tools-{{version}}/bin/picard"
-    owner: "{{ sw_installer }}" 
+    owner: "{{ main_guy }}"
     mode: 0755
   with_items:
     - { jar: '{{ soft_dir }}/picard-tools-{{version}}/picard.jar' }
+
+- name: Set picard globaly
+  file:
+    path: /usr/local/bin/picard
+    src: "{{ soft_dir }}/picard-{{ version }}/bin/picard"
+    state: link
+    owner: "{{ main_guy }}"
 
