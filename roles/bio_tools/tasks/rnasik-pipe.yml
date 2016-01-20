@@ -8,13 +8,29 @@
        update=no
 
 - name: Set RNAsik-pipe globaly
-  become: "{{ bool_var }}"
+  stat: path={{ local_home }}/.bashrc
+  register: check_bashrc
 
-  file:
-    path: /usr/local/bin/RNAsik-pipe
-    src: "{{ soft_dir }}/RNAsik-pipe-{{ version }}/src/RNAsik-pipe"
-    state: link
-    owner: "{{ main_guy }}"
-  when: "{{ bool_var }}"
+- name: Set RNAsik-pipe globaly
+  template:
+    src: bashrc
+    dest: link
+    owner: "{{ local_home }}/.bashrc"
+  when: not check_bashrc.stat.exists
 
-  tags: rnasik-pipe
+- name: Seet RNAsik-pipe globaly
+  lineinfile:
+    dest: "{{ local_home }}/.bashrc"
+    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
+#
+#- name: Set RNAsik-pipe globaly
+#  become: "{{ bool_var }}"
+#
+#  file:
+#    path: /usr/local/bin/RNAsik-pipe
+#    src: "{{ soft_dir }}/RNAsik-pipe-{{ version }}/src/RNAsik-pipe"
+#    state: link
+#    owner: "{{ main_guy }}"
+#  when: "{{ bool_var }}"
+#
+#  tags: rnasik-pipe
