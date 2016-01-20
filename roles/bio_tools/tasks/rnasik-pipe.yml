@@ -12,7 +12,7 @@
 
   file:
     path: /usr/local/bin/RNAsik-pipe
-    src: "{{ soft_dir }}/-RNAsik-pipe-{{ version }}/src/RNAsik-pipe"
+    src: "{{ soft_dir }}/RNAsik-pipe-{{ version }}/src/RNAsik-pipe"
     state: link
     owner: "{{ main_guy }}"
   when: "{{ bool_var }}"

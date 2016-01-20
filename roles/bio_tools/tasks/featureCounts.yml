@@ -11,14 +11,19 @@
     dest={{ soft_dir }}
     copy=no
 
-#- name: Move FastQC to a version specific directory
-#  command: mv {{ soft_dir }}/FastQC {{ soft_dir }}/FastQC-{{ version }} creates={{ soft_dir }}/FastQC-{{ version }}
-#
-#- file: path="{{ soft_dir }}/FastQC-{{ version }}/fastqc" mode="a+x"
-#
-#- name: Set STAR globaly
-#  file:
-#    path: /usr/local/bin/STAR
-#    src: "{{ soft_dir }}/STAR-{{ version }}/bin/STAR"
-#    state: link
-#    owner: "{{ main_guy }}"
+- name: Compile subread tools
+  shell: cd {{ soft_dir }}/subread-{{ version }}-source/src; make -f Makefile.Linux
+  args:
+    creates: "{{ soft_dir }}/subread-{{version}}-source/bin/featureCounts"
+
+- name: Set featureCounts globaly
+  become: "{{ bool_var }}"
+
+  file:
+    path: /usr/local/bin/featureCounts
+    src: "{{ soft_dir }}/subread-{{ version }}-source/bin/featureCounts"
+    state: link
+    owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
+
+  tags: featureCounts

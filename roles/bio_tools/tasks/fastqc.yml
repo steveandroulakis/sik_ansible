@@ -16,9 +16,14 @@
 
 - file: path="{{ soft_dir }}/FastQC-{{ version }}/fastqc" mode="a+x"
 
-#- name: Set STAR globaly
-#  file:
-#    path: /usr/local/bin/STAR
-#    src: "{{ soft_dir }}/STAR-{{ version }}/bin/STAR"
-#    state: link
-#    owner: "{{ main_guy }}"
+- name: Set STAR globaly
+  become: "{{ bool_var }}"
+
+  file:
+    path: /usr/local/bin/fastqc
+    src: "{{ soft_dir }}/FastQC-{{ version }}/fastqc"
+    state: link
+    owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
+
+  tags: fastqc
