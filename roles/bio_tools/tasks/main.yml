@@ -5,6 +5,6 @@
 - include: samtools.yml version=1.2 htslib_version=1.2
 - include: picard.yml version=1.129
 - include: featureCounts.yml version=1.5.0-p1
-- include: rnasik-pipe.yml version=1.2 bin_dir={{ soft_dir }}/RNAsik-pipe-{{ version }}/src
+- include: rnasik-pipe.yml version=1.2 bin_dir=RNAsik-pipe-{{ version }}/src
 - include: fastqc.yml version=0.11.4
 - include: rna-seqc.yml version=1.1.8
