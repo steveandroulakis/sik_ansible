@@ -8,11 +8,22 @@
 
 - name: Installing BigDataScript
   shell: cd {{ source_dir }}/BigDataScript-{{version}}/; ./scripts/install.sh
+  args:
+    creates: "{{ soft_dir }}/BigDataScript-{{ version }}/bds"
+
+- name: Movin bds directory to apps
+  shell: mv "{{ local_home }}/.bds" "{{ soft_dir }}/BigDataScript-{{ version }}"
+  args:
+    creates: "{{ soft_dir }}/BigDataScript-{{ version }}/bds"
 
 - name: Set BDS globaly
-  become: true
+  become: "{{ bool_var }}"
+
   file:
     path: /usr/local/bin/bds
-    src: "{{ local_home }}/.bds/bds"
+    src: "{{ soft_dir }}/BigDataScript-{{ version }}/bds"
     state: link
     owner: "{{ main_guy }}"
+  when: "{{ bool_var }}"
+
+  tags: bds
