@@ -10,6 +10,7 @@
   shell: cd {{ source_dir }}/BigDataScript-{{version}}/; ./scripts/install.sh
 
 - name: Set BDS globaly
+  become: true
   file:
     path: /usr/local/bin/bds
     src: "{{ local_home }}/.bds/bds"

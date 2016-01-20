@@ -7,7 +7,12 @@
   roles:
           - common
           - java
-          - bds
-          - bio_tools
 
   become: true
+
+- name: Installing common packages for RNAsik-pipe and associate tools
+  hosts: home
+  remote_user: "{{ main_guy }}"
+  roles:
+          - bds
+          #- bio_tools
