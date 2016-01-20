@@ -20,3 +20,5 @@
     mode: 0644
   with_items:
     - { help_text: 'This module loads the STAR aligner', dir: 'STAR-{{version}}' }
+
+  tags: star
