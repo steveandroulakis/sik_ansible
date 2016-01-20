@@ -1,5 +1,6 @@
 ---
 
+- include: featureCounts.yml version=1.5.0-p1
 - include: STAR.yml version=2.5.0c
 - include: htslib.yml version=1.2
 - include: samtools.yml version=1.2 htslib_version=1.2

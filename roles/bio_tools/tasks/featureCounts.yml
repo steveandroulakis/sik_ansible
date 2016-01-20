@@ -1,0 +1,24 @@
+---
+
+- name: Download subread package
+  get_url:
+    url=http://sourceforge.net/projects/subread/files/latest/download?source=files
+    dest={{ source_dir }}/subread-{{ version }}.tar.gz
+
+- name: Uncompress subread
+  unarchive:
+    src={{ source_dir }}/subread-{{ version }}.tar.gz
+    dest={{ soft_dir }}
+    copy=no
+
+#- name: Move FastQC to a version specific directory
+#  command: mv {{ soft_dir }}/FastQC {{ soft_dir }}/FastQC-{{ version }} creates={{ soft_dir }}/FastQC-{{ version }}
+#
+#- file: path="{{ soft_dir }}/FastQC-{{ version }}/fastqc" mode="a+x"
+#
+#- name: Set STAR globaly
+#  file:
+#    path: /usr/local/bin/STAR
+#    src: "{{ soft_dir }}/STAR-{{ version }}/bin/STAR"
+#    state: link
+#    owner: "{{ main_guy }}"
