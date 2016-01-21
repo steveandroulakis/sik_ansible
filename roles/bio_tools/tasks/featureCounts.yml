@@ -2,8 +2,9 @@
 
 - name: Download subread package
   get_url:
-    url=http://sourceforge.net/projects/subread/files/latest/download?source=files
-    dest={{ source_dir }}/subread-{{ version }}.tar.gz
+    url: http://sourceforge.net/projects/subread/files/latest/download?source=files
+    timeout: 30
+    dest: "{{ source_dir }}/subread-{{ version }}.tar.gz"
 
 - name: Uncompress subread
   unarchive:
