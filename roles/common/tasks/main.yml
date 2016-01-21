@@ -2,10 +2,14 @@
 # This to install BigDataScript with all required dependencies
 
 - name: Update APT cache
-  apt: update_cache=yes cache_valid_time=3600
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: Installing common packages
-  apt: pkg={{item}} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - git
     - gcc
@@ -17,15 +21,3 @@
     # BigDataScript dependencies
     - golang-go
     - ant
-
-- name: Create required directories
-  file:
-    dest: "{{ item }}"
-    state: directory
-    mode: 0755
-    owner: "{{ main_guy }}"
-    group: "{{ main_guy }}"
-  with_items:
-    - "{{ source_dir }}"
-    - "{{ soft_dir }}"
-

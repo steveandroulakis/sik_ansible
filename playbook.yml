@@ -13,5 +13,6 @@
   hosts: home
   remote_user: "{{ main_guy }}"
   roles:
+          - make_dirs
           - bds
           - bio_tools

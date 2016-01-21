@@ -6,13 +6,14 @@
 #----------------
 # Users variable
 #----------------
-main_guy: check
+main_guy: ubuntu
 
 #---------------------------------
 # Different directories variables
 #---------------------------------
 
 bool_var: false
-local_home: "{{ lookup('env','HOME') }}"
+#local_home: "{{ lookup('env','HOME') }}"
+local_home: "{{ ansible_env.HOME }}"
 source_dir: "{{ local_home }}/software/source"
 soft_dir: "{{ local_home }}/software/apps"
