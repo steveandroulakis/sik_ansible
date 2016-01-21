@@ -6,7 +6,7 @@
 #----------------
 # Users variable
 #----------------
-main_guy: ubuntu
+main_guy: check
 
 #---------------------------------
 # Different directories variables
