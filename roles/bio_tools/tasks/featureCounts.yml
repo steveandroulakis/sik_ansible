@@ -16,7 +16,7 @@
   args:
     creates: "{{ soft_dir }}/subread-{{version}}-source/bin/featureCounts"
 
-- name: Set featureCounts globaly
+- name: Set featureCounts globaly throught /usr/local/bin
   become: "{{ bool_var }}"
 
   file:
@@ -24,6 +24,22 @@
     src: "{{ soft_dir }}/subread-{{ version }}-source/bin/featureCounts"
     state: link
     owner: "{{ main_guy }}"
-  when: "{{ bool_var }}"
+  when: bool_var
+
+- name: Check for ~/.bashrc file
+  stat: path={{ local_home }}/.bashrc
+  register: check_bashrc
+
+- name: Set featureCounts globaly throught PATH new bashrc
+  template:
+    src: bashrc
+    dest: "{{ local_home }}/.bashrc"
+  when: not check_bashrc.stat.exists and not bool_var
+
+- name: Set featureCounts globaly throught PATH append to bashrc
+  lineinfile:
+    dest: "{{ local_home }}/.bashrc"
+    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
+  when: check_bashrc.stat.exists and not bool_var
 
   tags: featureCounts

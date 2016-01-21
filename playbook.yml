@@ -5,8 +5,8 @@
   hosts: home
   remote_user: "{{ main_guy }}"
   roles:
-          - common
-          - java
+          #- common
+          #- java
 
   become: true
 
@@ -14,5 +14,5 @@
   hosts: home
   remote_user: "{{ main_guy }}"
   roles:
-          - bds
+          #- bds
           - bio_tools
