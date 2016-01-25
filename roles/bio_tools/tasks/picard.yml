@@ -24,14 +24,14 @@
     - { jar: '{{ soft_dir }}/picard-tools-{{version}}/picard.jar' }
 
 - name: Set picard tools globaly throught /usr/local/bin
-  become: "{{ bool_var }}"
+  become: "{{ slink_executable_to_user_local_bin }}"
 
   file:
     path: /usr/local/bin/picard
     src: "{{ soft_dir }}/picard-tools-{{ version }}/bin/picard"
     state: link
     owner: "{{ main_guy }}"
-  when: bool_var
+  when: slink_executable_to_user_local_bin
 
 - name: Check for ~/.bashrc file
   stat: path={{ local_home }}/.bashrc
@@ -41,12 +41,12 @@
   template:
     src: bashrc
     dest: "{{ local_home }}/.bashrc"
-  when: not check_bashrc.stat.exists and not bool_var
+  when: not check_bashrc.stat.exists and not slink_executable_to_user_local_bin
 
 - name: Set picard tools globaly throught PATH append to bashrc
   lineinfile:
     dest: "{{ local_home }}/.bashrc"
     line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
-  when: check_bashrc.stat.exists and not bool_var
+  when: check_bashrc.stat.exists and not slink_executable_to_user_local_bin
 
   tags: picard
