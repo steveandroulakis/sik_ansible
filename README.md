@@ -41,11 +41,11 @@ This ansible script was written specifically for installation of [RNAsik-pipelin
 
 In order to have tools in the global environment you have two options:
 
-1. symlink executable file to `/usr/local/bin` for that you need `sudo` and you need to set `slink_executable_to_usr_loca_bin: true` in `group_vars/all`
+- symlink executable file to `/usr/local/bin` for that you need `sudo` and you need to set `slink_executable_to_usr_loca_bin: true` in `group_vars/all`
 
 OR
 
-2. have executables in your `PATH` by appending them into your `~/.bashrc` don't need `sudo`, if `slink_executable_to_usr_loca_bin: false` then `~/.bashrc` will be appended automatically
+- have executables in your `PATH` by appending them into your `~/.bashrc` don't need `sudo`, if `slink_executable_to_usr_loca_bin: false` then `~/.bashrc` will be appended automatically
 
 ## List of bioinformatics tools
 
