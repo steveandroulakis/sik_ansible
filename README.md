@@ -19,17 +19,12 @@ _depending on how you want to run this playbook the order of the next couple of 
 - run ansible
 - log into vm
 - pull your raw data e.g `mkidr test-raw-data; cd test-data` and then:
-
     - `wget -O ENCSR067UNX_R1.fasta.gz "https://www.encodeproject.org/files/ENCFF028JQU/@@download/ENCFF028JQU.fastq.gz" 2> /dev/null &`
     - `wget -O ENCSR067UNX_R2.fasta.gz "https://www.encodeproject.org/files/ENCFF087HWA/@@download/ENCFF087HWA.fastq.gz" 2> /dev/null &`
-
 - pull your reference files e.g `mkdir test-ref-files; cd test-ref-files` and then:
-
     - `wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna_sm.primary_assembly.fa.gz`
     - `wget ftp://ftp.ensembl.org/pub/release-75//gtf/homo_sapiens/Homo_sapiens.GRCh37.75.gtf.gz`
-
 - run `RNAsik-pipe` as follows:
-
 ```BASH
 RNAsik-pipe -align star \
             -fqDir test-raw-data \
