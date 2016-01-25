@@ -13,7 +13,7 @@ I assume you know how to start new [virtual machine (vm)](https://en.wikipedia.o
 
 - bring up a vm (AWS, NeCTAR, OpenStack, etc)
 
-_depending on how you want to run this playbook the order of the next couple of steps will change, but I can't you are smart cookie, so you'll be fine_
+_depending on how you want to run this playbook the order of the next couple of steps will change, but I can see you are a smart cookie, so you'll be fine_
 
 - edit `host` file to add vm ip address, edit `groups_vars/all` files to change vm user
 - run ansible
