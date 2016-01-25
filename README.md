@@ -39,13 +39,13 @@ RNAsik-pipe -align star \
 
 This ansible script was written specifically for installation of [RNAsik-pipeline](https://github.com/MonashBioinformaticsPlatform/RNAsik-pipe) and associated tools. However anyone can use this ansible script to install [these](#list-of-bioinformatics-tools) bioinformatics tools. [RNAsik-pipeline](https://github.com/MonashBioinformaticsPlatform/RNAsik-pipe) is written in [BigDataScript (BDS)](http://pcingola.github.io/BigDataScript/) pipeline language and this ansible script therefore also installs [BDS](http://pcingola.github.io/BigDataScript/). Script can be used to set up your local machine or remote. Either way you'll need `sudo` access to install required dependencies including Java. [List of dependencies](roles/common/tasks/main.yml). If you already have all those dependencies and Java at least 1.8 you can comment out `-common` and `-java` and you won't need sudo to install BigDataScript and bioinformatics tools. All bioinformatics tools will be installed into `$HOME/software/apps/APP_NAME`. 
 
-In order to put have tools in the global environment you have two options:
+In order to have tools in the global environment you have two options:
 
-1. symlink executable file to `/usr/local/bin` for that you need `sudo`
+1. symlink executable file to `/usr/local/bin` for that you need `sudo` and you need to set `slink_executable_to_usr_loca_bin: true` in `group_vars/all`
 
 OR
 
-2. have executables in your `PATH` by appending them into your `~/.bashrc` don't need `sudo`
+2. have executables in your `PATH` by appending them into your `~/.bashrc` don't need `sudo`, if `slink_executable_to_usr_loca_bin: false` then `~/.bashrc` will be appended automatically
 
 ## List of bioinformatics tools
 
@@ -59,6 +59,5 @@ OR
 ## Running ansible playbook
 
 ```BASH
-ansible-playbook -i hosts playbook.yml
+ansible-playbook -i hosts playbook.yml --ask-become-pass
 ```
-
