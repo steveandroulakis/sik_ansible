@@ -2,7 +2,7 @@
 
 ## Content
 
-- [Quick start](#quick-star)
+- [Quick start](#quick-start)
 - [Introduction](#introduction)
 - [List of bioinformatics tools](#list-of-bioinformaitcs-tools)
 - [Running ansible playbook](#running-ansible-playbook)
