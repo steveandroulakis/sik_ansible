@@ -11,7 +11,7 @@ main_guy: ubuntu
 #---------------------------------
 # Different directories variables
 #---------------------------------
-bool_var: false
+slink_executable_to_user_local_bin: true
 local_home: "{{ ansible_env.HOME }}"
 source_dir: "{{ local_home }}/software/source"
 soft_dir: "{{ local_home }}/software/apps"
