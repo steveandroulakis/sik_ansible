@@ -11,18 +11,35 @@
   template:
     src: java-wrapper.sh.j2
     dest: "{{ soft_dir }}/RNA-SeQC_v{{version}}/rna-seqc"
-    owner: "{{ sw_installer }}" 
+    owner: "{{ main_guy }}"
     mode: 0755
   with_items:
     - { jar: '{{ soft_dir }}/RNA-SeQC_v{{version}}/RNA-SeQC_v{{version}}.jar' }
 
-- file: dest="{{modules_dir}}/bio/RNA-SeQC" state=directory mode=0755
+- name: Set RNA-SeQC globaly throught /usr/local/bin
+  become: "{{ slink_executable_to_user_local_bin }}"
 
-- name: RNA-SeQC module definition
-  template: 
-    src: sw-module.lua.j2 
-    dest: "{{ modules_dir }}/bio/RNA-SeQC/{{version}}.lua"
-    owner: "{{ sw_installer }}" 
-    mode: 0644
-  with_items:
-    - { help_text: 'RNA-SeQC is a java program which computes a series of quality control metrics for RNA-seq data', dir: 'RNA-SeQC_v{{version}}', skip_bin: true }
+  file:
+    path: /usr/local/bin/rna-seqc
+    src: "{{ soft_dir }}/RNA-SeQC_v{{ version }}/rna-seqc"
+    state: link
+    owner: "{{ main_guy }}"
+  when: slink_executable_to_user_local_bin
+
+- name: Check for ~/.bashrc file
+  stat: path={{ local_home }}/.bashrc
+  register: check_bashrc
+
+- name: Set RNA-SeQC globaly throught PATH new bashrc
+  template:
+    src: bashrc
+    dest: "{{ local_home }}/.bashrc"
+  when: not check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+
+- name: Set RNA-SeQC globaly throught PATH append to bashrc
+  lineinfile:
+    dest: "{{ local_home }}/.bashrc"
+    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
+  when: check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+
+  tags: rna-seqc

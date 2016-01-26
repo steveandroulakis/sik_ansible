@@ -8,23 +8,38 @@
 
 - name: Installing BigDataScript
   shell: cd {{ source_dir }}/BigDataScript-{{version}}/; ./scripts/install.sh
-
-- file: dest="{{ soft_dir }}/BigDataScript-{{version}}" state=directory mode=0755
-
-- name: Moving .bds file into global environment
-  shell: mv $HOME/.bds "{{ soft_dir }}/BigDataScript-{{ version }}"
   args:
-    creates: "{{ soft_dir }}/BigDataScript-{{ version }}/.bds/bds"
-        
+    creates: "{{ soft_dir }}/BigDataScript-{{ version }}/bds"
 
+- name: Movin bds directory to apps
+  shell: mv "{{ local_home }}/.bds" "{{ soft_dir }}/BigDataScript-{{ version }}"
+  args:
+    creates: "{{ soft_dir }}/BigDataScript-{{ version }}/bds"
 
-- file: dest={{ modules_dir }}/bio/BigDataScript state=directory mode=0755
+- name: Set BDS globaly throught /usr/local/bin
+  become: "{{ slink_executable_to_user_local_bin }}"
 
-- name: BigDataScript module definition
-  template: 
-    src: sw-module.lua.j2 
-    dest: "{{ modules_dir }}/bio/BigDataScript/{{ version }}.lua"
-    owner: "{{ sw_installer }}" 
-    mode: 0644
-  with_items:
-    - { help_text: 'BigDataScript is intended as a scripting language for big data pipeline. ', dir: 'BigDataScript-{{version}}/.bds', skip_bin: true }
+  file:
+    path: /usr/local/bin/bds
+    src: "{{ soft_dir }}/BigDataScript-{{ version }}/bds"
+    state: link
+    owner: "{{ main_guy }}"
+  when: slink_executable_to_user_local_bin
+
+- name: Check for ~/.bashrc file
+  stat: path={{ local_home }}/.bashrc
+  register: check_bashrc
+
+- name: Set BDS globaly throught PATH new bashrc
+  template:
+    src: bashrc
+    dest: "{{ local_home }}/.bashrc"
+  when: not check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+
+- name: Set BDS globaly throught PATH append to bashrc
+  lineinfile:
+    dest: "{{ local_home }}/.bashrc"
+    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
+  when: check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+
+  tags: bds

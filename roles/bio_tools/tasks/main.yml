@@ -1,9 +1,10 @@
 ---
 
-- include: STAR.yml version=2.5.0c
-- include: htslib.yml tags=htslib version=1.2
-- include: samtools.yml tags=samtools version=1.2 htslib_version=1.2
-- include: picard.yml tags=picard version=1.129
-- include: rna-seqc.yml tags=rna-seqc version=1.1.8
-- include: rnasik-pipe.yml tags=rnasik-pipe version=1.2
-- include: fastqc.yml tags=fastqc version=0.11.4
+- include: STAR.yml version=2.5.0c bin_dir=STAR-{{ version }}/bin
+- include: rnasik-pipe.yml version=1.2 bin_dir=RNAsik-pipe-{{ version }}/src
+- include: htslib.yml version=1.2
+- include: samtools.yml version=1.2 htslib_version=1.2 bin_dir=samtools-{{ version }}/bin
+- include: picard.yml version=1.129 bin_dir=picard-tools-{{ version }}/bin
+- include: featureCounts.yml version=1.5.0-p1 bin_dir=subread-{{ version }}-source/bin
+- include: fastqc.yml version=0.11.4 bin_dir=FastQC-{{ version }}
+- include: rna-seqc.yml version=1.1.8 bin_dir=RNA-SeQC_v{{ version }}

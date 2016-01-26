@@ -1,0 +1,46 @@
+---
+
+- name: Download subread package
+  get_url:
+    url: http://sourceforge.net/projects/subread/files/latest/download?source=files
+    timeout: 30
+    dest: "{{ source_dir }}/subread-{{ version }}.tar.gz"
+
+- name: Uncompress subread
+  unarchive:
+    src={{ source_dir }}/subread-{{ version }}.tar.gz
+    dest={{ soft_dir }}
+    copy=no
+
+- name: Compile subread tools
+  shell: cd {{ soft_dir }}/subread-{{ version }}-source/src; make -f Makefile.Linux
+  args:
+    creates: "{{ soft_dir }}/subread-{{version}}-source/bin/featureCounts"
+
+- name: Set featureCounts globaly throught /usr/local/bin
+  become: "{{ slink_executable_to_user_local_bin }}"
+
+  file:
+    path: /usr/local/bin/featureCounts
+    src: "{{ soft_dir }}/subread-{{ version }}-source/bin/featureCounts"
+    state: link
+    owner: "{{ main_guy }}"
+  when: slink_executable_to_user_local_bin
+
+- name: Check for ~/.bashrc file
+  stat: path={{ local_home }}/.bashrc
+  register: check_bashrc
+
+- name: Set featureCounts globaly throught PATH new bashrc
+  template:
+    src: bashrc
+    dest: "{{ local_home }}/.bashrc"
+  when: not check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+
+- name: Set featureCounts globaly throught PATH append to bashrc
+  lineinfile:
+    dest: "{{ local_home }}/.bashrc"
+    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
+  when: check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+
+  tags: featureCounts
