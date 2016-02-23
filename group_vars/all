@@ -12,10 +12,12 @@ sw_installer: sik_dude
 #---------------------------------
 # Different directories variables
 #---------------------------------
-source_dir: /software/source
-soft_dir: /software/apps
-modules_dir: /software/modules
-ref_dir: /references
+#slink_executable_to_user_local_bin: true
+local_home: "{{ ansible_env.HOME }}"
+source_dir: "{{ local_home }}/software/source"
+soft_dir: "{{ local_home }}/software/apps"
+modules_dir: "{{ local_home }}/software/modules"
+#ref_dir: /references
 
 #----------------------
 # Versioning variables

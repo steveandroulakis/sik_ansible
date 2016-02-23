@@ -6,7 +6,6 @@
   remote_user: "{{ main_guy }}"
   roles:
             - common
-            - make_sw_guy
             - lmod 
             - java
 
@@ -14,7 +13,8 @@
 
 - name: Installing BigDataScript, RNAsik-pipe and bioinformatc's tools
   hosts: remote
-  remote_user: "{{ sw_installer }}"
+  remote_user: "{{ main_guy }}"
   roles:
+          - make_dirs
           - bds
           - bio_tools

@@ -16,7 +16,7 @@
     - liblua5.2-dev
     - lua-filesystem
     - lua-posix
-    - tcl
+    #- tcl
     # htslib dependencies
     - zlib1g-dev
     - libncurses-dev

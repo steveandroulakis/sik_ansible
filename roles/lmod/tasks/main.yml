@@ -1,7 +1,7 @@
 ---
 
 - name: Create required directories
-  file: dest={{item}} state=directory mode=0755 owner={{ sw_installer }}
+  file: dest={{item}} state=directory mode=0755 owner={{ main_guy }}
   with_items:
   - "{{ source_dir }}"
   - "{{ soft_dir }}"
@@ -34,18 +34,3 @@
     dest=/etc/profile.d/lmod.sh
     owner=root
     mode=0644
-
-- name: Copy lmod sh StdEnv init file to /etc/profile.d/
-  template:
-    src=z00_StdEnv.sh
-    dest=/etc/profile.d/z00_StdEnv.sh
-    owner=root
-    mode=0644
-
-- name: Copy StdEnv module definition
-  template:
-    src=StdEnv.lua
-    dest={{ modules_dir }}/core
-    owner=root
-    mode=0644
-

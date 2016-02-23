@@ -1,5 +1,0 @@
-load("samtools"
-
-    ,"picard"
-    ,"STAR"
-    )
