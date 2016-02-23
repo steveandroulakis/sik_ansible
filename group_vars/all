@@ -7,7 +7,6 @@
 # Users variable
 #----------------
 main_guy: ubuntu
-sw_installer: sik_dude
 
 #---------------------------------
 # Different directories variables
@@ -17,12 +16,6 @@ local_home: "{{ ansible_env.HOME }}"
 source_dir: "{{ local_home }}/software/source"
 soft_dir: "{{ local_home }}/software/apps"
 modules_dir: "{{ local_home }}/software/modules"
-#ref_dir: /references
-
-#----------------------
-# Versioning variables
-#----------------------
-lmod_version: 6.0.1
 
 #-----------------------------------
 # ssh key variable for sw_installer

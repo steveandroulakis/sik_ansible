@@ -6,7 +6,6 @@
   remote_user: "{{ main_guy }}"
   roles:
             - common
-            - lmod 
             - java
 
   become: true
@@ -16,5 +15,6 @@
   remote_user: "{{ main_guy }}"
   roles:
           - make_dirs
+          - lmod 
           - bds
           - bio_tools

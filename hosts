@@ -1,6 +1,6 @@
 # List of servers, ansible refers to them as systems
 
-your_server          ansible_host=146.118.100.12
+your_server          ansible_host=130.56.252.249
 
 # List of different groups, the same system can be added to multiple groups
 
