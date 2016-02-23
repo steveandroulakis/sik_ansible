@@ -17,14 +17,15 @@
     creates: "{{ soft_dir }}/BigDataScript-{{ version }}/.bds/bds"
         
 
-
-- file: dest={{ modules_dir }}/bio/BigDataScript state=directory mode=0755
+- file: dest={{ modules_dir }}/BigDataScript state=directory mode=0755
 
 - name: BigDataScript module definition
   template: 
     src: sw-module.lua.j2 
-    dest: "{{ modules_dir }}/bio/BigDataScript/{{ version }}.lua"
+    dest: "{{ modules_dir }}/BigDataScript/{{ version }}.lua"
     owner: "{{ main_guy }}" 
     mode: 0644
   with_items:
     - { help_text: 'BigDataScript is intended as a scripting language for big data pipeline. ', dir: 'BigDataScript-{{version}}/.bds', skip_bin: true }
+
+  tags: bds
