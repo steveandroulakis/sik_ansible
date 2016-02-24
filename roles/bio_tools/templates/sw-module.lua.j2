@@ -39,8 +39,6 @@ setenv("{{e.name}}", "{{e.value}}")
 load({{ item.depend }})
 {% endif %}
 
-
 {% if item.msg is defined %}
 LmodMessage("{{ item.msg }}")
 {% endif %}
-
