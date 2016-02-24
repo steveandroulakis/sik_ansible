@@ -20,5 +20,6 @@
         help_text: 'This module loads Kirill RNAsik-pipe release version {{ version }}'
         skip_bin: true
         base: "{{ soft_dir }}/{{ version }}/src"
+        sik: true
 
   tags: rnasik-pipe 

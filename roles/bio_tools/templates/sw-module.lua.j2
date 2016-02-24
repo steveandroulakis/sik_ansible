@@ -9,6 +9,17 @@ local base = "{{ item.base }}"
 local base = pathJoin("{{soft_dir}}", "{{ item.dir }}")
 {% endif %}
 
+{% if item.sik is defined %}
+load("STAR",
+     "featureCounts",
+     "picard",
+     "RNA-SeQC",
+     "fastqc",
+     "samtools",
+     "BigDataScript"
+    )
+{% endif %}
+
 {% if item.skip_bin is defined %}
 local path = base
 {% elif item.bin is defined %}
