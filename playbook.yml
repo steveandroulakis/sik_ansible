@@ -11,7 +11,7 @@
   become: true
 
 - name: Installing BigDataScript, RNAsik-pipe and bioinformatc's tools
-  hosts: remote
+  hosts: home
   remote_user: "{{ main_guy }}"
   roles:
           - make_dirs
