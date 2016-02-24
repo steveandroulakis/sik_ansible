@@ -11,11 +11,14 @@
     dest={{ soft_dir }}
     copy=no
 
-- name: Move FastQC to a version specific directory
-  shell: mv {{ soft_dir }}/FastQC {{ soft_dir }}/FastQC-{{ version }}
-  args:
-    creates: "{{ soft_dir }}/FastQC-{{version}}/fastqc"
 
+- name: Move FastQC to a version specific directory
+  command: mv {{ soft_dir }}/FastQC {{ soft_dir }}/FastQC-{{ version }}
+  args:
+    creates: "{{ soft_dir }}/FastQC-{{ version }}"
+
+
+- file: path="{{ soft_dir }}/FastQC-{{ version }}/fastqc" mode="a+x"
 - file: dest="{{ modules_dir }}/fastqc" state=directory mode=0755
 
 - name: Set FastQC globaly throught PATH new bashrc

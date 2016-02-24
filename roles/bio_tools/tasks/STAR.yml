@@ -21,6 +21,5 @@
   with_items:
     - dir: 'STAR-{{version}}'
       help_text: 'This module loads the STAR aligner'
-      check: 
 
   tags: star
