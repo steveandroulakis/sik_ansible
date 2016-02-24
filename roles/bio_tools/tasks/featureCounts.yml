@@ -25,6 +25,7 @@
     owner: "{{ main_guy }}" 
     mode: 0644
   with_items:
-    - { help_text: 'This module loads the featureCounts', dir: 'featureCounts-{{version}}' }
+    - dir: 'featureCounts-{{version}}'
+      help_text: 'This module loads the featureCounts'
 
   tags: featureCounts

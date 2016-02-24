@@ -19,6 +19,7 @@
     owner: "{{ main_guy }}" 
     mode: 0644
   with_items:
-    - { help_text: 'This module loads the STAR aligner', dir: 'STAR-{{version}}' }
+    - dir: 'STAR-{{version}}'
+      help_text: 'This module loads the STAR aligner'
 
   tags: star

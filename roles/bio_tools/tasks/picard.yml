@@ -32,6 +32,7 @@
     owner: "{{ main_guy }}" 
     mode: 0644
   with_items:
-    - { help_text: 'This module loads the Picard tool suite', dir: 'picard-tools-{{version}}' }
+    - dir: 'picard-tools-{{version}}'
+      help_text: 'This module loads the Picard tool suite'
 
   tags: picard 

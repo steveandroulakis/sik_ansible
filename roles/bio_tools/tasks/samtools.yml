@@ -26,6 +26,7 @@
     owner: "{{ main_guy }}"
     mode: 0644
   with_items:
-    - { help_text: 'This module loads the samtools tool suite', dir: 'samtools-{{version}}' }
+    - dir: 'samtools-{{version}}'
+      help_text: 'This module loads the samtools tool suite'
 
   tags: samtools

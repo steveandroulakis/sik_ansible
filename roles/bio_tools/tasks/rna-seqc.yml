@@ -25,6 +25,8 @@
     owner: "{{ main_guy }}" 
     mode: 0644
   with_items:
-    - { help_text: 'RNA-SeQC is a java program which computes a series of quality control metrics for RNA-seq data', dir: 'RNA-SeQC_v{{version}}', skip_bin: true }
+    - help_text: 'RNA-SeQC is a java program which computes a series of quality control metrics for RNA-seq data'
+      dir: 'RNA-SeQC_v{{version}}'
+      skip_bin: true
 
   tags: rna-seqc 
