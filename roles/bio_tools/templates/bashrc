@@ -1,1 +1,0 @@
-export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH
