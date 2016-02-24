@@ -15,9 +15,25 @@
     - gcc
     - make
     - unzip
+    # python stuff
+    - python-pip
+    - python-dev
+    - build-essential 
+    # Lua language install for lmod
+    - lua5.2 
+    - liblua5.2-dev
+    - lua-filesystem
+    - lua-posix
+    - tcl
+    - libreadline-dev
     # htslib dependencies
     - zlib1g-dev
     - libncurses-dev
     # BigDataScript dependencies
     - golang-go
     - ant
+
+- name: Install pip packages
+  pip: name={{item}} state=latest
+  with_items:
+      - gffutils

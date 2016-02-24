@@ -11,12 +11,12 @@ main_guy: ubuntu
 #---------------------------------
 # Different directories variables
 #---------------------------------
-slink_executable_to_user_local_bin: true
 local_home: "{{ ansible_env.HOME }}"
 source_dir: "{{ local_home }}/software/source"
 soft_dir: "{{ local_home }}/software/apps"
+modules_dir: "{{ local_home }}/software/modules"
 
-#---------------------------------
-# ssh key variable for main_guy
-#---------------------------------
+#-----------------------------------
+# ssh key variable for sw_installer
+#-----------------------------------
 pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKvlI3CjTFEehCMVwUrHmutIjMQnGZYUIlGm7BU/xUKJTCijIGnVCh22yyplgPx/iG4Wg5zEkbCIGTI+yaA73mTR9jqo8PSy213LfRiiAmYGtffcY6TFrfaiqrPhKXlouMB3QY0c676Ds1A4Lpml2C2raUywqeHBVJMNj25CIvn/T9OQV64N4v+PYkhOPIHzP40X9iav73eWHqSrsXVltfh4eh/CI9M44VWc8Om653gfvrpqdWietjbpxPPT+VLhT1JdNJXV0tS6RMhBedJAMkFIKgYBO3zlM8J6Tn+QO8q3hLPre/rikHVgSGLwPTb9JZnlPLjHGgUamAxxrmGLv5 kirill@biostation"

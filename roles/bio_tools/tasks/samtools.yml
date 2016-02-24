@@ -17,8 +17,7 @@
   args:
     creates: "{{ soft_dir }}/samtools-{{version}}/bin/samtools"
 
-- name: Set samtools globaly
-  become: "{{ slink_executable_to_user_local_bin }}"
+- file: dest="{{modules_dir}}/samtools" state=directory mode=0755
 
   file:
     path: /usr/local/bin/samtools
@@ -33,14 +32,12 @@
 
 - name: Set samtools globaly throught PATH new bashrc
   template:
-    src: bashrc
-    dest: "{{ local_home }}/.bashrc"
-  when: not check_bashrc.stat.exists and not slink_executable_to_user_local_bin
-
-- name: Set samtools globaly throught PATH append to bashrc
-  lineinfile:
-    dest: "{{ local_home }}/.bashrc"
-    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
-  when: check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+    src: sw-module.lua.j2
+    dest: "{{ modules_dir }}/samtools/{{version}}.lua"
+    owner: "{{ main_guy }}"
+    mode: 0644
+  with_items:
+    - dir: 'samtools-{{version}}'
+      help_text: 'This module loads the samtools tool suite'
 
   tags: samtools

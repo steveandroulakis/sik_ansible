@@ -10,4 +10,4 @@
   with_items:
     - "{{ source_dir }}"
     - "{{ soft_dir }}"
-
+    - "{{ modules_dir }}"

@@ -1,26 +1,24 @@
 ---
 
-# RNAsik-pipe installtion
 - name: Git Clone RNAsik-pipe
   git: repo=https://github.com/monashbioinformaticsplatform/RNAsik-pipe.git
        dest={{ soft_dir }}/RNAsik-pipe-{{ version }}
        version={{ version }}
        update=no
 
-- name: Check for ~/.bashrc file
-  stat: path={{ local_home }}/.bashrc
-  register: check_bashrc
+- file: dest="{{ modules_dir }}/RNAsik-pipe" state=directory mode=0755
 
-- name: Set RNAsik-pipe globaly
-  template:
-    src: bashrc
-    dest: "{{ local_home }}/.bashrc"
-  when: not check_bashrc.stat.exists
+- name: RNAsik-pipe module definition
+  template: 
+    src: sw-module.lua.j2 
+    dest: "{{ modules_dir }}/RNAsik-pipe/{{version}}.lua"
+    owner: "{{ main_guy }}"
+    mode: 0644
+  with_items:
+      - dir: "{{ version }}"
+        help_text: 'This module loads Kirill RNAsik-pipe release version {{ version }}'
+        skip_bin: true
+        base: "{{ soft_dir }}/{{ version }}/src"
+        sik: true
 
-- name: Set RNAsik-pipe globaly
-  lineinfile:
-    dest: "{{ local_home }}/.bashrc"
-    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
-  when: check_bashrc.stat.exists
-
-  tags: rnasik-pipe
+  tags: rnasik-pipe 

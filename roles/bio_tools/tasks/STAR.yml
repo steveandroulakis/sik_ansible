@@ -10,30 +10,17 @@
   args:
     creates: "{{ soft_dir }}/STAR-{{version}}/bin/STAR"
 
-- name: Set STAR globaly throught /usr/local/bin
-  become: "{{ slink_executable_to_user_local_bin }}"
+- file: dest="{{modules_dir}}/STAR" state=directory mode=0755
 
-  file:
-    path: /usr/local/bin/STAR
-    src: "{{ soft_dir }}/STAR-{{ version }}/bin/STAR"
-    state: link
-    owner: "{{ main_guy }}"
-  when: slink_executable_to_user_local_bin
-
-- name: Check for ~/.bashrc file
-  stat: path={{ local_home }}/.bashrc
-  register: check_bashrc
-
-- name: Set STAR globaly throught PATH new bashrc
-  template:
-    src: bashrc
-    dest: "{{ local_home }}/.bashrc"
-  when: not check_bashrc.stat.exists and not slink_executable_to_user_local_bin
-
-- name: Set STAR globaly throught PATH append to bashrc
-  lineinfile:
-    dest: "{{ local_home }}/.bashrc"
-    line: "export PATH={{ soft_dir }}/{{ bin_dir }}:$PATH"
-  when: check_bashrc.stat.exists and not slink_executable_to_user_local_bin
+- name: STAR module definition
+  template: 
+    src: sw-module.lua.j2 
+    dest: "{{ modules_dir }}/STAR/{{version}}.lua"
+    owner: "{{ main_guy }}" 
+    mode: 0644
+  with_items:
+    - dir: 'STAR-{{version}}'
+      help_text: 'This module loads the STAR aligner'
+      check: 
 
   tags: star

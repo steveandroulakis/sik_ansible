@@ -4,15 +4,17 @@
 - name: Installing common packages for RNAsik-pipe and associate tools
   hosts: home
   remote_user: "{{ main_guy }}"
-  become: true
   roles:
-          - common
-          - java
+            - common
+            - java
 
-- name: Installing common bioinformatics tools
-  hosts: home
+  become: true
+
+- name: Installing BigDataScript, RNAsik-pipe and bioinformatc's tools
+  hosts: remote
   remote_user: "{{ main_guy }}"
   roles:
           - make_dirs
+          - lmod 
           - bds
           - bio_tools
