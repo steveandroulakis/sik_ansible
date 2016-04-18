@@ -9,24 +9,12 @@
 - name: Uncompress subread
   unarchive:
     src={{ source_dir }}/subread-{{ version }}.tar.gz
-    dest={{ soft_dir }}
+    dest={{ source_dir }}
     copy=no
 
 - name: Compile subread tools
-  shell: cd {{ soft_dir }}/subread-{{ version }}-source/src; make -f Makefile.Linux
+  shell: cd {{ source_dir }}/subread-{{ version }}-source/src; make -f Makefile.Linux
   args:
-    creates: "{{ soft_dir }}/subread-{{version}}-source/bin/featureCounts"
-
-- file: dest="{{modules_dir}}/featureCounts" state=directory mode=0755
-
-- name: featureCounts module definition
-  template: 
-    src: sw-module.lua.j2 
-    dest: "{{ modules_dir }}/featureCounts/{{version}}.lua"
-    owner: "{{ main_guy }}" 
-    mode: 0644
-  with_items:
-    - dir: 'subread-{{version}}-source'
-      help_text: 'This module loads the featureCounts'
+    creates: "{{ source_dir }}/subread-{{version}}-source/bin/featureCounts"
 
   tags: featureCounts

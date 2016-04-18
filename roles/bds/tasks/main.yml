@@ -1,3 +1,18 @@
 ---
 
-- include: bds.yml version=v0.9999c bin_dir=BigDataScript-{{ version }}
+- name: Downloading BigDataScript
+  git: repo=https://github.com/pcingola/BigDataScript.git
+       dest={{ source_dir }}/BigDataScript-{{ bds_version }}
+       version={{ bds_version }}
+
+- name: Installing BigDataScript
+  shell: cd {{ source_dir }}/BigDataScript-{{bds_version}}/; ./scripts/install.sh
+
+- file: dest="{{ source_dir }}/BigDataScript-{{bds_version}}" state=directory mode=0755
+
+- name: Movin bds directory to apps
+  shell: mv "{{ local_home }}/.bds" "{{ source_dir }}/BigDataScript-{{ bds_version }}/build"
+  args:
+    creates: "{{ source_dir }}/BigDataScript-{{ bds_version }}/build/bds"
+
+  tags: bds

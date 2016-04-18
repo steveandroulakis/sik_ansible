@@ -15,6 +15,5 @@
   remote_user: "{{ main_guy }}"
   roles:
           - make_dirs
-          - lmod 
           - bds
           - bio_tools

@@ -13,10 +13,8 @@
     creates: "{{ source_dir }}/htslib-{{version}}/README"
 
 - name: Build and Install htslib
-  shell: cd {{ source_dir }}/htslib-{{version}}; make install prefix="{{ soft_dir }}/htslib-{{version}}"
+  shell: cd {{ source_dir }}/htslib-{{version}}; make
   args:
-    creates: "{{ soft_dir }}/htslib-{{version}}/bin/tabix"
-
-- file: dest="{{modules_dir}}/htslib" state=directory mode=0755
+    creates: "{{ source_dir }}/htslib-{{version}}/bin/tabix"
 
   tags: htslib

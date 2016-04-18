@@ -13,20 +13,8 @@
     creates: "{{ source_dir }}/samtools-{{version}}/README"
 
 - name: Build and Install samtools
-  shell: cd {{ source_dir }}/samtools-{{version}}; make install prefix="{{ soft_dir }}/samtools-{{version}}" HTSDIR="../htslib-{{htslib_version}}"
+  shell: cd {{ source_dir }}/samtools-{{version}}; make HTSDIR="../htslib-{{htslib_version}}"
   args:
-    creates: "{{ soft_dir }}/samtools-{{version}}/bin/samtools"
-
-- file: dest="{{modules_dir}}/samtools" state=directory mode=0755
-
-- name: Set samtools globaly throught PATH new bashrc
-  template:
-    src: sw-module.lua.j2
-    dest: "{{ modules_dir }}/samtools/{{version}}.lua"
-    owner: "{{ main_guy }}"
-    mode: 0644
-  with_items:
-    - dir: 'samtools-{{version}}'
-      help_text: 'This module loads the samtools tool suite'
+    creates: "{{ source_dir }}/samtools-{{version}}/bin/samtools"
 
   tags: samtools
