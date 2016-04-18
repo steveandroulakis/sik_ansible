@@ -4,14 +4,14 @@
   get_url:
     url=http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v{{version}}.zip
     dest={{ source_dir }}/fastqc_v{{ version }}.zip
-  tags: always
+  tags: fadown
 
 - name: Uncompress FastQC
   unarchive:
     src={{ source_dir }}/fastqc_v{{ version }}.zip
     dest={{ source_dir }}
     copy=no
-  tags: always
+  tags: fapack
 
 - file: path="{{ source_dir }}/FastQC/fastqc" mode="u+x"
   tags: fastqc

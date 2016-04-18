@@ -1,10 +1,10 @@
 ---
 
 - file: dest="{{ source_dir }}/RNA-SeQC_v{{version}}" state=directory mode=0755
-  tags: always
+  tags: rqcdown
 
 - name: Download RNA-SeQC
   get_url:
     url=http://www.broadinstitute.org/cancer/cga/tools/rnaseqc/RNA-SeQC_v{{version}}.jar
     dest={{ source_dir }}/RNA-SeQC_v{{version}}/RNA-SeQC_v{{version}}.jar
-  tags: rna-seqc 
+  tags: rqc 

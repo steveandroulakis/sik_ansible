@@ -4,7 +4,7 @@
   get_url:
     url=https://github.com/samtools/htslib/archive/{{version}}.tar.gz
     dest={{source_dir}}/htslib-{{version}}.tar.gz
-  tags: always
+  tags: htsdown
 
 - name: Uncompress htslib
   unarchive: 
@@ -12,7 +12,7 @@
     dest: "{{ source_dir }}"
     copy: no
     creates: "{{ source_dir }}/htslib-{{version}}/README"
-  tags: always
+  tags: htspack
 
 - name: Build and Install htslib
   shell: cd {{ source_dir }}/htslib-{{version}}; make

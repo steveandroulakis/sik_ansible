@@ -4,7 +4,7 @@
   get_url:
     url=https://github.com/broadinstitute/picard/releases/download/{{version}}/picard-tools-{{version}}.zip
     dest={{source_dir}}/picard-tools-{{version}}.zip
-  tags: always
+  tags: picdown
 
 - name: Uncompress Picard
   unarchive: 

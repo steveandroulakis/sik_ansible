@@ -5,7 +5,7 @@
        dest={{ source_dir }}/RNAsik-pipe-{{ version }}
        version={{ version }}
        update=no
-  tags: rnasik-pipe
+  tags: sik
 
 - name: Copy RNAsik-pipe configuration file
   template: src=sik.config dest={{ source_dir }}/RNAsik-pipe-{{ version }}
