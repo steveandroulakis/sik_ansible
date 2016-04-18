@@ -5,16 +5,17 @@
     url: http://sourceforge.net/projects/subread/files/latest/download?source=files
     timeout: 30
     dest: "{{ source_dir }}/subread-{{ version }}.tar.gz"
+  tags: always
 
 - name: Uncompress subread
   unarchive:
     src={{ source_dir }}/subread-{{ version }}.tar.gz
     dest={{ source_dir }}
     copy=no
+  tags: always
 
 - name: Compile subread tools
   shell: cd {{ source_dir }}/subread-{{ version }}-source/src; make -f Makefile.Linux
   args:
     creates: "{{ source_dir }}/subread-{{version}}-source/bin/featureCounts"
-
   tags: featureCounts

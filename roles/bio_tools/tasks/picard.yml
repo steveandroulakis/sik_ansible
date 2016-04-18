@@ -4,6 +4,7 @@
   get_url:
     url=https://github.com/broadinstitute/picard/releases/download/{{version}}/picard-tools-{{version}}.zip
     dest={{source_dir}}/picard-tools-{{version}}.zip
+  tags: always
 
 - name: Uncompress Picard
   unarchive: 
@@ -11,16 +12,4 @@
     dest: "{{ source_dir }}"
     copy: no
     creates: "{{ source_dir }}/picard-tools-{{version}}/picard.jar"
-
-#- file: dest="{{ soft_dir }}/picard-tools-{{version}}/bin" state=directory mode=0755
-#
-#- name: Picard wrapper script
-#  template:
-#    src: java-wrapper.sh.j2
-#    dest: "{{ soft_dir }}/picard-tools-{{version}}/bin/picard"
-#    owner: "{{ main_guy }}" 
-#    mode: 0755
-#  with_items:
-#    - { jar: '{{ soft_dir }}/picard-tools-{{version}}/picard.jar' }
-
   tags: picard 

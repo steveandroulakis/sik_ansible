@@ -9,3 +9,5 @@
     group: "{{ main_guy }}"
   with_items:
     - "{{ source_dir }}"
+
+  tags: dirs

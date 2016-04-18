@@ -4,6 +4,7 @@
   get_url:
     url=https://github.com/samtools/samtools/archive/{{version}}.tar.gz
     dest={{source_dir}}/samtools-{{version}}.tar.gz
+  tags: always
 
 - name: Uncompress samtools
   unarchive: 
@@ -11,10 +12,10 @@
     dest: "{{ source_dir }}"
     copy: no
     creates: "{{ source_dir }}/samtools-{{version}}/README"
+  tags: always
 
 - name: Build and Install samtools
   shell: cd {{ source_dir }}/samtools-{{version}}; make HTSDIR="../htslib-{{htslib_version}}"
   args:
     creates: "{{ source_dir }}/samtools-{{version}}/bin/samtools"
-
   tags: samtools

@@ -4,6 +4,7 @@
   get_url:
     url=https://github.com/samtools/htslib/archive/{{version}}.tar.gz
     dest={{source_dir}}/htslib-{{version}}.tar.gz
+  tags: always
 
 - name: Uncompress htslib
   unarchive: 
@@ -11,10 +12,10 @@
     dest: "{{ source_dir }}"
     copy: no
     creates: "{{ source_dir }}/htslib-{{version}}/README"
+  tags: always
 
 - name: Build and Install htslib
   shell: cd {{ source_dir }}/htslib-{{version}}; make
   args:
     creates: "{{ source_dir }}/htslib-{{version}}/bin/tabix"
-
   tags: htslib

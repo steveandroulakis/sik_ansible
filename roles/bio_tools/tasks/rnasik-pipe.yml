@@ -5,14 +5,15 @@
        dest={{ source_dir }}/RNAsik-pipe-{{ version }}
        version={{ version }}
        update=no
+  tags: rnasik-pipe
 
 - name: Copy RNAsik-pipe configuration file
   template: src=sik.config dest={{ source_dir }}/RNAsik-pipe-{{ version }}
+  tags: sik-config
 
 - name: Edit path to bds interpreter
   lineinfile: 
           dest={{ source_dir }}/RNAsik-pipe-{{ version }}/src/RNAsik-pipe 
           regexp="/usr/bin/env bds"
           line="#!{{ source_dir }}/BigDataScript-{{ bds_version }}/build/bds"
-
-  tags: rnasik-pipe 
+  tags: sik-config 
