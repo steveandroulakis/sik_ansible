@@ -18,7 +18,8 @@ _depending on how you want to run this playbook the order of the next couple of 
 - edit `host` file to add vm ip address, edit `groups_vars/all` files to change vm user
 - run ansible
 - log into vm
-- `module load RNAsik-pipe` and everythinig else will come with it
+- `export PATH=$HOME/software/source/RNAsik-pipe-1.3-beta/src/:$PATH` i.e make `RNAsik-pipe` available in your path
+_RNAsik-pipe now has sik.config file that one can use to specify path to all requried executables. This is why you don't have export any other tools into your path just RNAsik-pipe_
 - pull your raw data e.g `mkidr test-raw-data; cd test-data` and then:
     - `wget -O ENCSR067UNX_R1.fasta.gz "https://www.encodeproject.org/files/ENCFF028JQU/@@download/ENCFF028JQU.fastq.gz" 2> /dev/null &`
     - `wget -O ENCSR067UNX_R2.fasta.gz "https://www.encodeproject.org/files/ENCFF087HWA/@@download/ENCFF087HWA.fastq.gz" 2> /dev/null &`
