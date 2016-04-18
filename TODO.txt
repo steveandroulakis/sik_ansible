@@ -1,0 +1,1 @@
+make a switch to select between sudo and not for those who already has dependencies installed
