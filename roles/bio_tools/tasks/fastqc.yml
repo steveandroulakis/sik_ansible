@@ -2,16 +2,29 @@
 
 - name: Download FastQC
   get_url:
-    url=http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v{{version}}.zip
-    dest={{ source_dir }}/fastqc_v{{ version }}.zip
-  tags: fadown
+    url: "http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v{{ version }}.zip"
+    dest: "{{ source_dir }}/fastqc_v{{ version }}.zip"
+
+  tags: get_fastqc
 
 - name: Uncompress FastQC
   unarchive:
-    src={{ source_dir }}/fastqc_v{{ version }}.zip
-    dest={{ source_dir }}
-    copy=no
-  tags: fapack
+    src: "{{ source_dir }}/fastqc_v{{ version }}.zip"
+    dest: "{{ source_dir }}"
+    copy: no
+    creates: "{{ source_dir }}/FastQC/fastqc"
 
-- file: path="{{ source_dir }}/FastQC/fastqc" mode="u+x"
-  tags: fastqc
+  tags: unpack_fastqc
+
+- name: fix fastqc direectory name
+  shell: mv {{ source_dir }}/FastQC {{ source_dir }}/fastqc-{{ version }}
+  args:
+    creates: "{{ source_dir }}/fastqc-{{ version }}/fastqc"
+
+  tags: unpack_fastqc
+
+- file:
+    path: "{{ source_dir }}/fastqc-{{ version }}/fastqc"
+    mode: "a+x"
+
+  tags: unpack_fastqc
