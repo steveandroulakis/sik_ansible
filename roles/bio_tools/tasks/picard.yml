@@ -14,22 +14,11 @@
     copy: no
     creates: "{{ source_dir }}/picard-tools-{{ version }}/picard.jar"
 
-  tags: unpack_picard
+  tags: build_picard
 
 - file:
     dest: "{{ source_dir }}/picard-tools-{{ version }}/bin"
     state: directory
     mode: 0755
 
-  tags: unpack_picard
-
-  #- name: picard wrapper script
-  #  template:
-  #    src: java-wrapper.sh.j2
-  #    dest: "{{ source_dir }}/picard-tools-{{ version }}/bin/picard"
-  #    owner: "{{ main_guy }}" 
-  #    mode: 0755
-  #  with_items:
-  #    - jar: "{{ source_dir }}/picard-tools-{{ version }}/picard.jar"
-  #
-  #  tags: wrap_picard
+  tags: build_picard
