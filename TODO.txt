@@ -1,1 +1,5 @@
 make a switch to select between sudo and not for those who already has dependencies installed
+
+make sure sik.config looks proper path
+
+make ansible to print debug message to soruce RNAsik-pipe into enviroment
