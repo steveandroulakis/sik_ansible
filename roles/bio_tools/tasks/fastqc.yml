@@ -12,11 +12,11 @@
     src: "{{ source_dir }}/fastqc_v{{ version }}.zip"
     dest: "{{ source_dir }}"
     copy: no
-    creates: "{{ source_dir }}/FastQC/fastqc"
+    creates: "{{ source_dir }}/FastQC/README.txt"
 
   tags: build_fastqc
 
-- name: fix fastqc direectory name
+- name: fix fastqc directory name
   shell: mv {{ source_dir }}/FastQC {{ source_dir }}/fastqc-{{ version }}
   args:
     creates: "{{ source_dir }}/fastqc-{{ version }}/fastqc"
