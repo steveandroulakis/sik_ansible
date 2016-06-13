@@ -3,7 +3,7 @@
 - include: STAR.yml version={{ star_version }}
 - include: htslib.yml version={{ htslib_version }}
 - include: samtools.yml version={{ samtools_version }}
-- include: picard.yml version=picard_version }}
+- include: picard.yml version={{ picard_version }}
   #- include: fastqc.yml version={{ fastqc_version }}
 - include: subread.yml version={{ subread_version }}
 - include: rna-seqc.yml version={{ rna-seqc_version }}
