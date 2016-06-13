@@ -6,7 +6,7 @@
 - include: picard.yml version={{ picard_version }}
   #- include: fastqc.yml version={{ fastqc_version }}
 - include: subread.yml version={{ subread_version }}
-- include: rna-seqc.yml version={{ rna-seqc_version }}
+- include: rna-seqc.yml version={{ rnaseqc_version }}
 - include: rnasik-pipe.yml version={{ sik_version }}
 
 - name: display export message
