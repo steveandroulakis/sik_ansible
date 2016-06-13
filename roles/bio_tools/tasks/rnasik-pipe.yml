@@ -3,8 +3,8 @@
 - name: Git Clone RNAsik-pipe
   git:
     repo: https://github.com/monashbioinformaticsplatform/RNAsik-pipe.git
-    dest: "{{ source_dir }}/RNAsik-pipe-{{ version }}"
-    version: "{{ version }}"
+    dest: "{{ source_dir }}/RNAsik-pipe-{{ sik_version }}"
+    version: "{{ sik_version }}"
     update: no
 
   tags: sik
@@ -12,13 +12,13 @@
 - name: Copy RNAsik-pipe configuration file
   template:
     src: sik.config
-    dest: "{{ source_dir }}/RNAsik-pipe-{{ version }}"
+    dest: "{{ source_dir }}/RNAsik-pipe-{{ sik_version }}"
 
   tags: sik-config
 
 - name: Edit path to bds interpreter
   lineinfile: 
-    dest: "{{ source_dir }}/RNAsik-pipe-{{ version }}/src/RNAsik-pipe"
+    dest: "{{ source_dir }}/RNAsik-pipe-{{ sik_version }}/src/RNAsik-pipe"
     regexp: "/usr/bin/env bds"
     line: "#!{{ source_dir }}/BigDataScript-{{ bds_version }}/build/bds"
 

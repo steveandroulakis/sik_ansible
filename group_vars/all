@@ -13,4 +13,6 @@ main_guy: ubuntu
 #---------------------------------
 local_home: "{{ ansible_env.HOME }}"
 source_dir: "{{ local_home }}/software/source"
+
 bds_version: master
+sik_version: 1.3.x
