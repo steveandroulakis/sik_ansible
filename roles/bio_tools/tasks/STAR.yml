@@ -8,8 +8,3 @@
     update: no
 
   tags: get_star
-
-- file:
-    dest: "{{ modules_dir }}/STAR"
-    state: directory
-    mode: 0755
