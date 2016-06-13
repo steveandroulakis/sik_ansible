@@ -1,0 +1,24 @@
+---
+
+- name: Download subread package
+  get_url:
+    url: http://sourceforge.net/projects/subread/files/latest/download?source=files
+    timeout: 30
+    dest: "{{ source_dir }}/subread-{{ version }}.tar.gz"
+
+  tags: get_subread
+
+- name: Uncompress subread
+  unarchive:
+      src: "{{ source_dir }}/subread-{{ version }}.tar.gz"
+      dest: "{{ source_dir }}"
+      copy: no
+
+  tags: build_subread
+
+- name: build subread tools
+  shell: cd {{ source_dir }}/subread-{{ version }}-source/src; make -f Makefile.Linux
+  args:
+    creates: "{{ source_dir }}/subread-{{ version }}-source/bin/featureCounts"
+
+  tags: build_subread
