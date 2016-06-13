@@ -11,8 +11,7 @@
   tags: get_samtools
 
 - name: build samtools
-  shell: cd {{ source_dir }}/samtools-{{ version }}; make install prefix={{ source_dir }}/samtools-{{ version }}
-  #shell: cd {{ source_dir }}/samtools-{{ version }}; make install prefix={{ source_dir }}/samtools-{{version}} HTSDIR=../htslib-{{ htslib_version }}
+  shell: cd {{ source_dir }}/samtools-{{ version }}; make install prefix={{ source_dir }}/samtools-{{version}} HTSDIR=../htslib-{{ htslib_version }}
   args:
     creates: "{{ source_dir }}/samtools-{{ version }}/bin/samtools"
 

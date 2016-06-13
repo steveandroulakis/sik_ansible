@@ -1,0 +1,25 @@
+---
+
+- name: git clone htslib
+  git:
+    repo: https://github.com/samtools/htslib/
+    dest: "{{ source_dir }}/htslib-{{ version }}"
+    version: "{{ version }}"
+    # this should prevent git clone error if directory already exist
+    update: no
+
+  tags: get_htslib
+
+- name: build htslib
+  shell: cd {{ source_dir }}/htslib-{{ version }}; make install prefix={{ source_dir }}/htslib-{{ version }}
+  args:
+    creates: "{{ source_dir }}/htslib-{{ version }}/bin/tabix"
+
+  tags: build_htslib
+
+- file:
+    dest: "{{ modules_dir }}/htslib"
+    state: directory
+    mode: 0755
+
+  tags: lmod_htslib
