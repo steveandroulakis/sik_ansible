@@ -1,0 +1,10 @@
+---
+# This to install all bioinforamtics tools
+# Don't need sudo privilege !
+- name: Installing BigDataScript, RNAsik-pipe and bioinformatc's tools
+  hosts: home
+  remote_user: "{{ main_guy }}"
+  roles:
+          - make_dirs
+          - bds
+          - bio_tools
