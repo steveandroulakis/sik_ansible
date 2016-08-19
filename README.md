@@ -36,8 +36,8 @@ Optionally you can append `export` line into your `~/.bashrc` to make if permane
 #### Test run
 
 - pull your raw data e.g `mkidr test-raw-data; cd test-data` and then:
-    - `wget -O ENCSR067UNX_R1.fasta.gz "https://www.encodeproject.org/files/ENCFF028JQU/@@download/ENCFF028JQU.fastq.gz" 2> /dev/null &`
-    - `wget -O ENCSR067UNX_R2.fasta.gz "https://www.encodeproject.org/files/ENCFF087HWA/@@download/ENCFF087HWA.fastq.gz" 2> /dev/null &`
+    - `wget -O ENCSR067UNX_R1.fastq.gz "https://www.encodeproject.org/files/ENCFF028JQU/@@download/ENCFF028JQU.fastq.gz" 2> /dev/null &`
+    - `wget -O ENCSR067UNX_R2.fastq.gz "https://www.encodeproject.org/files/ENCFF087HWA/@@download/ENCFF087HWA.fastq.gz" 2> /dev/null &`
 
 - pull your reference files e.g `mkdir test-ref-files; cd test-ref-files` and then:
     - `wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna_sm.primary_assembly.fa.gz`
